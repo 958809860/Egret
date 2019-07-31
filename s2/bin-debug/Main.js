@@ -1,3 +1,11 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 //////////////////////////////////////////////////////////////////////////////////////
 //
 //  Copyright (c) 2014-present, Egret Technology.
@@ -26,36 +34,66 @@
 //  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //////////////////////////////////////////////////////////////////////////////////////
-var __reflect = (this && this.__reflect) || function (p, c, t) {
-    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
-};
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var GridSprite = (function (_super) {
+    __extends(GridSprite, _super);
+    function GridSprite() {
+        var _this = _super.call(this) || this;
+        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.drawGrid, _this);
+        return _this;
+        // this.drawGrid();
+    }
+    GridSprite.prototype.drawGrid = function (evt) {
+        this.graphics.beginFill(0x0000ff);
+        this.graphics.drawRect(0, 0, 50, 50);
+        this.graphics.endFill();
+        this.graphics.beginFill(0x0000ff);
+        this.graphics.drawRect(50, 50, 50, 50);
+        this.graphics.endFill();
+        this.graphics.beginFill(0xff0000);
+        this.graphics.drawRect(50, 0, 50, 50);
+        this.graphics.endFill();
+        this.graphics.beginFill(0xff0000);
+        this.graphics.drawRect(0, 50, 50, 50);
+        this.graphics.endFill();
+    };
+    return GridSprite;
+}(egret.Sprite));
+__reflect(GridSprite.prototype, "GridSprite");
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         var _this = _super.call(this) || this;
-        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onStage, _this);
+        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
     }
-    Main.prototype.onStage = function (evt) {
-        var shp = new egret.Shape();
-        shp.graphics.beginFill(0xff0000);
-        shp.graphics.drawRect(0, 0, 100, 100);
-        shp.graphics.endFill();
-        // this.addChild(shp);
-        var spr = new egret.Sprite();
-        spr.x = 100;
-        spr.y = 100;
-        this.addChild(spr);
-        spr.addChild(shp);
+    Main.prototype.onAddToStage = function (event) {
+        var _myGrid = new GridSprite();
+        this.addChild(_myGrid);
     };
     return Main;
-}(egret.Sprite));
+}(egret.DisplayObjectContainer));
 __reflect(Main.prototype, "Main");
+// class Main extends egret.Sprite{
+//     public constructor()
+//     {
+//         super();
+//         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onStage,this)
+//     }
+//     private onStage(evt:egret.Event) 
+//     {
+//         var shp:egret.Shape = new egret.Shape();
+//         shp.graphics.lineStyle(10,0x00ff00)
+//         shp.graphics.beginFill(0xff0000,1);
+//         shp.graphics.drawRect(0,0,100,200);
+//         shp.graphics.endFill();
+//         this.addChild(shp);
+// var spr:egret.Sprite = new egret.Sprite();
+// spr.x = 100;
+// spr.y = 100;
+// this.addChild(spr);
+// spr.addChild(shp);
+//     }
+// }
 // class Main extends egret.DisplayObjectContainer{
 //     public constructor()
 //     {

@@ -26,30 +26,72 @@
 //  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //////////////////////////////////////////////////////////////////////////////////////
-
-class Main extends egret.Sprite{
+class GridSprite extends egret.Sprite
+{
     public constructor()
     {
         super();
-        this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onStage,this)
+        this.addEventListener(egret.Event.ADDED_TO_STAGE,this.drawGrid,this)
+        // this.drawGrid();
     }
 
-    private onStage(evt:egret.Event) 
+    private drawGrid(evt:egret.Event) 
     {
-        var shp:egret.Shape = new egret.Shape();
-        shp.graphics.beginFill(0xff0000);
-        shp.graphics.drawRect(0,0,100,100);
-        shp.graphics.endFill();
-        // this.addChild(shp);
+        this.graphics.beginFill(0x0000ff);
+        this.graphics.drawRect(0,0,50,50);
+        this.graphics.endFill();
 
-        var spr:egret.Sprite = new egret.Sprite();
-        spr.x = 100;
-        spr.y = 100;
-        this.addChild(spr);
-        spr.addChild(shp);
+        this.graphics.beginFill(0x0000ff);
+        this.graphics.drawRect(50,50,50,50);
+        this.graphics.endFill();   
+
+        this.graphics.beginFill(0xff0000);
+        this.graphics.drawRect(50,0,50,50);
+        this.graphics.endFill();
+        
+        this.graphics.beginFill(0xff0000);
+        this.graphics.drawRect(0,50,50,50);
+        this.graphics.endFill();          
     }
 }
 
+class Main extends egret.DisplayObjectContainer{
+    public constructor()
+    {
+        super();
+        this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this)
+    }
+    private onAddToStage(event:egret.Event)
+    {
+        var _myGrid:GridSprite = new GridSprite();
+        this.addChild(_myGrid);
+    }
+}
+
+
+// class Main extends egret.Sprite{
+//     public constructor()
+//     {
+//         super();
+//         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onStage,this)
+//     }
+
+//     private onStage(evt:egret.Event) 
+//     {
+//         var shp:egret.Shape = new egret.Shape();
+//         shp.graphics.lineStyle(10,0x00ff00)
+//         shp.graphics.beginFill(0xff0000,1);
+//         shp.graphics.drawRect(0,0,100,200);
+//         shp.graphics.endFill();
+//         this.addChild(shp);
+
+        // var spr:egret.Sprite = new egret.Sprite();
+        // spr.x = 100;
+        // spr.y = 100;
+        // this.addChild(spr);
+        // spr.addChild(shp);
+//     }
+// }
 
 
 
