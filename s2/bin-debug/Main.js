@@ -38,38 +38,61 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         var _this = _super.call(this) || this;
-        _this.ang = 0;
-        _this.r = 30;
-        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
+        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onStage, _this);
         return _this;
     }
-    Main.prototype.onAddToStage = function (evt) {
-        this.drawCircle();
-        this.shp = new egret.Shape();
-        this.shp.graphics.beginFill(0x0000ff);
-        this.shp.graphics.drawRect(0, 0, 100, 100);
-        this.shp.graphics.endFill();
-        this.addChild(this.shp);
-        this.stage.frameRate = 60;
-        this.addEventListener(egret.Event.ENTER_FRAME, this.move, this);
-    };
-    Main.prototype.move = function () {
-        this.shp.x = 50 + Math.cos(this.ang * Math.PI / 180) * this.r;
-        this.shp.y = 50 + Math.sin(this.ang * Math.PI / 180) * this.r;
-        this.ang++;
-    };
-    Main.prototype.drawCircle = function () {
-        var cir = new egret.Shape();
-        cir.graphics.beginFill(0xffffff);
-        cir.graphics.drawCircle(0, 0, 30);
-        cir.graphics.endFill();
-        cir.x = 50;
-        cir.y = 50;
-        this.addChild(cir);
+    Main.prototype.onStage = function (evt) {
+        var shp = new egret.Shape();
+        shp.graphics.beginFill(0xff0000);
+        shp.graphics.drawRect(0, 0, 100, 100);
+        shp.graphics.endFill();
+        // this.addChild(shp);
+        var spr = new egret.Sprite();
+        spr.x = 100;
+        spr.y = 100;
+        this.addChild(spr);
+        spr.addChild(shp);
     };
     return Main;
-}(egret.DisplayObjectContainer));
+}(egret.Sprite));
 __reflect(Main.prototype, "Main");
+// class Main extends egret.DisplayObjectContainer{
+//     public constructor()
+//     {
+//         super();
+//         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this)
+//     }
+//     private shp:egret.Shape;
+//     private onAddToStage (evt:egret.Event)
+//     {
+//         this.drawCircle();
+//         this.shp = new egret.Shape();
+//         this.shp.graphics.beginFill( 0x0000ff );
+//         this.shp.graphics.drawRect(0,0,100,100);
+//         this.shp.graphics.endFill();
+//         this.addChild(this.shp);
+//         this.stage.frameRate = 60;
+//         this.addEventListener(egret.Event.ENTER_FRAME,this.move, this);
+//     }
+//     private ang:number =0;
+//     private r:number =30;
+//     private move()
+//     {
+//         this.shp.x =50 +Math.cos(this.ang *Math.PI/180)*this.r;
+//         this.shp.y =50 +Math.sin(this.ang *Math.PI/180)*this.r;
+//         this.ang ++;
+//     }
+//     private drawCircle() 
+//     {
+//         var cir:egret.Shape = new egret.Shape();
+//         cir.graphics.beginFill(0xffffff);
+//         cir.graphics.drawCircle(0,0,30);
+//         cir.graphics.endFill();
+//         cir.x = 50;
+//         cir.y = 50;
+//         this.addChild(cir);
+//     }
+// }
 // class Main extends egret.DisplayObjectContainer {
 //     /**
 //      * 加载进度界面
