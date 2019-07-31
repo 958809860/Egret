@@ -1,72 +1,85 @@
-//////////////////////////////////////////////////////////////////////////////////////
-//
-//  Copyright (c) 2014-present, Egret Technology.
-//  All rights reserved.
-//  Redistribution and use in source and binary forms, with or without
-//  modification, are permitted provided that the following conditions are met:
-//
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above copyright
-//       notice, this list of conditions and the following disclaimer in the
-//       documentation and/or other materials provided with the distribution.
-//     * Neither the name of the Egret nor the
-//       names of its contributors may be used to endorse or promote products
-//       derived from this software without specific prior written permission.
-//
-//  THIS SOFTWARE IS PROVIDED BY EGRET AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-//  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-//  IN NO EVENT SHALL EGRET AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA,
-//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-//////////////////////////////////////////////////////////////////////////////////////
-class GridSprite extends egret.Sprite
-{
-    public constructor()
-    {
-        super();
-        this.addEventListener(egret.Event.ADDED_TO_STAGE,this.drawGrid,this)
-        // this.drawGrid();
-    }
 
-    private drawGrid(evt:egret.Event) 
-    {
-        this.graphics.beginFill(0x0000ff);
-        this.graphics.drawRect(0,0,50,50);
-        this.graphics.endFill();
-
-        this.graphics.beginFill(0x0000ff);
-        this.graphics.drawRect(50,50,50,50);
-        this.graphics.endFill();   
-
-        this.graphics.beginFill(0xff0000);
-        this.graphics.drawRect(50,0,50,50);
-        this.graphics.endFill();
-        
-        this.graphics.beginFill(0xff0000);
-        this.graphics.drawRect(0,50,50,50);
-        this.graphics.endFill();          
-    }
-}
 
 class Main extends egret.DisplayObjectContainer{
-    public constructor()
-    {
+    public constructor(){
         super();
-        this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this)
+        var shape:egret.Shape = new egret.Shape();
+
+        shape.graphics.beginFill(0xff0000);
+        shape.graphics.drawRect(0,0,100,100);
+        shape.graphics.endFill();
+
+        this.addChild(shape);
+        shape.touchEnabled = true;
+        shape.addEventListener(egret.TouchEvent.TOUCH_TAP,this.touchHander,this);
     }
-    private onAddToStage(event:egret.Event)
+    
+    private touchHander(event:egret.TouchEvent):void 
     {
-        var _myGrid:GridSprite = new GridSprite();
-        this.addChild(_myGrid);
+        console.log("时间类型：" + event.type);
+        console.log("时间对象：" + event);   
     }
 }
+
+// class Main extends egret.DisplayObjectContainer
+// {
+//     public constructor()
+//     {
+//         super();
+//         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this);
+//     }
+//     private shape:egret.Shape;
+//     private onAddToStage() 
+//     {
+//         this.shape = new egret.Shape();
+//         this.addChild(this.shape);
+//         console.log("显示对象添加到舞台");    
+//     }
+// }
+
+
+
+// class GridSprite extends egret.Sprite
+// {
+//     public constructor()
+//     {
+//         super();
+//         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.drawGrid,this)
+//         // this.drawGrid();
+//     }
+
+//     private drawGrid(evt:egret.Event) 
+//     {
+//         this.graphics.beginFill(0x0000ff);
+//         this.graphics.drawRect(0,0,50,50);
+//         this.graphics.endFill();
+
+//         this.graphics.beginFill(0x0000ff);
+//         this.graphics.drawRect(50,50,50,50);
+//         this.graphics.endFill();   
+
+//         this.graphics.beginFill(0xff0000);
+//         this.graphics.drawRect(50,0,50,50);
+//         this.graphics.endFill();
+        
+//         this.graphics.beginFill(0xff0000);
+//         this.graphics.drawRect(0,50,50,50);
+//         this.graphics.endFill();          
+//     }
+// }
+
+// class Main extends egret.DisplayObjectContainer{
+//     public constructor()
+//     {
+//         super();
+//         this.addEventListener(egret.Event.ADDED_TO_STAGE,this.onAddToStage,this)
+//     }
+//     private onAddToStage(event:egret.Event)
+//     {
+//         var _myGrid:GridSprite = new GridSprite();
+//         this.addChild(_myGrid);
+//     }
+// }
 
 
 // class Main extends egret.Sprite{
@@ -332,3 +345,31 @@ class Main extends egret.DisplayObjectContainer{
 // }
 
 
+//////////////////////////////////////////////////////////////////////////////////////
+//
+//  Copyright (c) 2014-present, Egret Technology.
+//  All rights reserved.
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met:
+//
+//     * Redistributions of source code must retain the above copyright
+//       notice, this list of conditions and the following disclaimer.
+//     * Redistributions in binary form must reproduce the above copyright
+//       notice, this list of conditions and the following disclaimer in the
+//       documentation and/or other materials provided with the distribution.
+//     * Neither the name of the Egret nor the
+//       names of its contributors may be used to endorse or promote products
+//       derived from this software without specific prior written permission.
+//
+//  THIS SOFTWARE IS PROVIDED BY EGRET AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
+//  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+//  IN NO EVENT SHALL EGRET AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA,
+//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+//////////////////////////////////////////////////////////////////////////////////////
